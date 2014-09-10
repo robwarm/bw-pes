@@ -1,5 +1,6 @@
 MODULE inv_cxx
 !..use and access
+use inv_dp
 use inv_core
 implicit none
 

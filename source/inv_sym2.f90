@@ -1,5 +1,6 @@
 MODULE inv_sym2
 !..use and access
+use inv_dp
 implicit none
 
 private

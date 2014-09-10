@@ -1,5 +1,6 @@
 MODULE inv_cx1
 !..use and access
+use inv_dp
 use inv_core
 use inv_mg1
 use inv_cxx

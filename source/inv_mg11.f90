@@ -1,5 +1,6 @@
 MODULE inv_mg11
 !..use and access
+use inv_dp
 use inv_core
 use inv_mgx
 implicit none
@@ -49,6 +50,7 @@ integer, intent (in) :: mxd
 real (kind=dp), intent (in) :: u(0:)
 real (kind=dp), intent (out) :: w(0:mg11_npb(mxd)-1)
 !-----------------------------------------------------------------------
+integer :: i
 
 if (size(u).ne.nr) then
     stop 'mg11_prib: bad size u'

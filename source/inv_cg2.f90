@@ -1,5 +1,6 @@
 MODULE inv_cg2
 !..use and access
+use inv_dp
 implicit none
 
 private
@@ -49,7 +50,7 @@ real (kind=dp), intent (in) :: x(0:)
 real (kind=dp), intent (out) :: w(0:cg2_npb(mxd)-1)
 !-----------------------------------------------------------------------
 real (kind=dp) :: u(0:nr-1)
-
+integer :: i
 if (size(x).ne.nr) then
     stop 'cg2_prib: bad size x'
 !! else if (size(w).ne.cg2_npb(mxd)) then

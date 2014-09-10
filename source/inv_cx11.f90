@@ -1,5 +1,6 @@
 MODULE inv_cx11
 !..use and access
+use inv_dp
 use inv_core
 use inv_mg11
 use inv_cxx
@@ -23,7 +24,7 @@ real (kind=dp), intent (in) :: r(0:,0:)
 real (kind=dp), intent (out) :: w(0:)
 !-----------------------------------------------------------------------
 integer :: i0, j0
-real (kind=wp) :: t0, r0(0:mg11_nk-1,0:mg11_nk-1), &
+real (kind=dp) :: t0, r0(0:mg11_nk-1,0:mg11_nk-1), &
   y0(0:mg11_nk-1,0:mg11_nk-1), &
   w0(0:cx_dim(mg11_nb,pc%dg)-1), w1(0:cx_dim(mg11_nb,pc%dg)-1)
 

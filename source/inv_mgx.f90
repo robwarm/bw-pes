@@ -1,5 +1,6 @@
 MODULE inv_mgx
 !..use and access
+use inv_dp
 use inv_core
 implicit none
 
@@ -278,7 +279,7 @@ SUBROUTINE mgx_setd(r, d, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12, d13, d1
 real (kind=dp), intent (in) :: r(0:,0:)
 real (kind=dp), intent (out) :: d(0:,0:)
 real (kind=dp), optional, intent (out) :: d2(0:,0:), d3(0:,0:), &
-  d4(0:,0:), d5(0:,0:), d6(0:,0:), d7(0:,0:), d8(0:,0:), d9(0:,0:) &
+  d4(0:,0:), d5(0:,0:), d6(0:,0:), d7(0:,0:), d8(0:,0:), d9(0:,0:), &
   d10(0:,0:), d11(0:,0:), d12(0:,0:), d13(0:,0:), d14(0:,0:), d15(0:,0:)
 !-----------------------------------------------------------------------
 integer :: i, j

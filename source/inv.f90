@@ -1,5 +1,6 @@
 MODULE inv
 !..use and access
+use inv_dp
 use inv_core
 use inv_mg
 !use inv_mgv
