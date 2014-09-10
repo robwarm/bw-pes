@@ -274,11 +274,12 @@ enddo
 return
 END SUBROUTINE mgx_gens2d
 
-SUBROUTINE mgx_setd(r, d, d2, d3, d4, d5, d6, d7, d8, d9)
+SUBROUTINE mgx_setd(r, d, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12, d13, d14, d15)
 real (kind=dp), intent (in) :: r(0:,0:)
 real (kind=dp), intent (out) :: d(0:,0:)
 real (kind=dp), optional, intent (out) :: d2(0:,0:), d3(0:,0:), &
-  d4(0:,0:), d5(0:,0:), d6(0:,0:), d7(0:,0:), d8(0:,0:), d9(0:,0:)
+  d4(0:,0:), d5(0:,0:), d6(0:,0:), d7(0:,0:), d8(0:,0:), d9(0:,0:) &
+  d10(0:,0:), d11(0:,0:), d12(0:,0:), d13(0:,0:), d14(0:,0:), d15(0:,0:)
 !-----------------------------------------------------------------------
 integer :: i, j
 
@@ -294,6 +295,7 @@ do j = 0, size(r,2)-1
     enddo
         d(j,j) = 0._dp
 enddo
+!!! this needs to be redone completely
 if (present(d2)) then
     d2 = d * d
     if (present(d3)) then
@@ -304,16 +306,40 @@ if (present(d2)) then
                 d5 = d4 * d
                 if (present(d6)) then
                     d6 = d5 * d
-                    if (present(d7)) then
-                        d7 = d6 * d
-                        if (present(d8)) then
-                            d8 = d7 * d
-                            if (present(d9)) then
-                                d9 = d8 * d
-                            endif
-                        endif
-                    endif
+                else
+                    return
                 endif
+            endif
+        endif
+    endif
+endif
+if (present(d7)) then
+    d7 = d6 * d
+    if (present(d8)) then
+        d8 = d7 * d
+        if (present(d9)) then
+            d9 = d8 * d
+            if (present(d10)) then
+                d10 = d9 * d
+                if (present(d11)) then
+                    d11 = d10 * d
+                else
+                    return
+                endif
+            endif
+        endif
+    endif
+endif
+if (present(d12)) then
+    d12 = d11 * d
+    if (present(d13)) then
+        d13 = d12 * d
+        if (present(d14)) then
+            d14 = d13 * d
+            if (present(d15)) then
+                d15 = d14 * d
+            else
+                return
             endif
         endif
     endif
