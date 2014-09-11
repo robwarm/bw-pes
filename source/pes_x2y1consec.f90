@@ -92,8 +92,8 @@ call pes_dists (xn, r)
 ! Dissociates into X1+X1Y1, X2+Y1
 
 f = pes_x2y1_pot(xn)
-f = f + cx_f21_consec(nki,r,pes_x2y1consec_pc0,  pes_x2y1consec_cf0,   pes_x2y1consec_cp,0) + &
-        cx_f21_consec(nki,r,pes_x2y1consec_pc180,pes_x2y1consec_cf180, pes_x2y1consec_cp,180)
+f = f + cx_f21_consec(nki,r,pes_x2y1consec_pc0,  pes_x2y1consec_cf0,   pes_x2y1consec_cp, 0) + &
+        cx_f21_consec(nki,r,pes_x2y1consec_pc180,pes_x2y1consec_cf180, pes_x2y1consec_cp, 180)
 
 return
 END FUNCTION pes_x2y1consec_pot

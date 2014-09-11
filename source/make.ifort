@@ -1,5 +1,5 @@
 FC = ifort 
-FFLAGS =  -O2 -fp-model strict -mkl=sequential
+FFLAGS =  -O2 -fp-model strict
 BLD = xiar -rcv
 #MKLPATH = /opt/intel/mkl/lib/intel64/
 #LIBDIRS = -L. -L/usr/lib64 -L$(MKLPATH)

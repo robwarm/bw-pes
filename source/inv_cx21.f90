@@ -127,7 +127,7 @@ integer, intent(in) :: whichlin
 !-----------------------------------------------------------------------
 real (kind=dp) :: w(0:size(cf)-1)
 
-call cx_b21_consec (nki, (/0,1/), pc, cp, r, w,whichlin)
+call cx_b21_consec(nki, (/0,1/), pc, cp, r, w,whichlin)
 f = dot_product(cf,w)
 
 return

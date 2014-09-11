@@ -1,0 +1,39 @@
+FC = gfortran
+FFLAGS = -O2 -ffree-form -ffree-line-length-none -Wextra -Wall -pedantic
+BLD = /usr/bin/ar -rcv
+LIBDIRS = -L. -L/usr/lib64
+LIBS = -llapack -lblas
+
+
+objlibpx = px.o
+
+objects = $(objlibpx)
+libraries = libpx.a 
+
+#-----------------------------------------------------------------------
+# Rules.
+
+all : $(objects) $(libraries)
+obj : $(objects)
+lib : $(libraries)
+
+.PHONY : all obj lib clean realclean
+.SUFFIXES : $(nil)
+FORCE :
+
+# Pattern rule to make a %.o file from a %.f90 file.
+%.o : %.f90
+	$(FC) -c $(FFLAGS) -I../ $<
+
+# Here are the rules to make the libraries.
+libpx.a : $(objlibpx) ../libpes.a
+	\rm -f $@
+	cp ../libpes.a $(@F)
+	$(BLD) $(@F) $(objlibpx)
+
+# targets 'clean' and 'realclean' clean up the directory.
+clean : FORCE
+	rm -f *.o *~ core junk
+realclean : clean
+	rm -f *.a *.mod
+# DO NOT DELETE
