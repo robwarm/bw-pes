@@ -44,7 +44,7 @@ if (0.le.pc%dg) then
         do i0 = sum(nki(0:ik(0)-1)), i1-1
             r0 = r((/i0,i1/),(/i0,i1/))
             t0 = cx_cut(pc,r0)
-            if (t0.ne.0) then
+            if (dabs(t0).gt.1d-12) then
                 call cx_var(pc, r0, y0)
                 call mg2_base(pc%dg, y0, w0)
                 w1 = w1 + w0 * t0

@@ -202,9 +202,7 @@ integer, intent (in) :: mxd
 real (kind=dp), intent (in) :: r(0:,0:)
 real (kind=dp), intent (out) :: w(0:mg21_nb(mxd)-1)
 !-----------------------------------------------------------------------
-integer :: k, l0, m0, l, n, ind
-real (kind=dp) :: u(0:nr-1), v(0:mg21_nsc(mxd)-1), &
-  w0(0:mg21_npb(mxd)-1)
+real (kind=dp) :: u(0:nr-1), v(0:mg21_nsc(mxd)-1), w0(0:mg21_npb(mxd)-1)
 
 if (size(r,1).ne.nk.or.size(r,2).ne.nk) then
     stop 'mg21_base: bad size r'

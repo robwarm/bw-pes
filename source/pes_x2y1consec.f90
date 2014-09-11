@@ -71,7 +71,6 @@ SUBROUTINE pes_x2y1consec_read_cp(iun, fn)
 integer, intent (in) :: iun
 character (len=*), intent (in) :: fn
 !-----------------------------------------------------------------------
-integer :: nb
 
 open (iun, status='old', file=fn)
 read (iun,*) pes_x2y1consec_cp(1)
@@ -127,7 +126,7 @@ if(whichlin.eq.0) then
     else
         ! Require that pes_x2y1consec_cf is null
         if (allocated(pes_x2y1consec_cf0)) then
-            if (any(pes_x2y1consec_cf0.ne.0.0_dp)) then
+            if (any(dabs(pes_x2y1consec_cf0).ge.1d-12)) then
                 stop 'pes_x2y1consec_add: mismatch'
             endif
             deallocate (pes_x2y1consec_cf0)
@@ -144,7 +143,7 @@ else
         else
             ! Require that pes_x2y1consec_cf is null
             if (allocated(pes_x2y1consec_cf180)) then
-                if (any(pes_x2y1consec_cf180.ne.0.0_dp)) then
+                if (any(dabs(pes_x2y1consec_cf180).ge.1d-12)) then
                     stop 'pes_x2y1consec_add: mismatch'
                 endif
                 deallocate (pes_x2y1consec_cf180)

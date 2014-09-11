@@ -20,7 +20,7 @@ end type
 !r0x, bx,cx for cx_var_consec
 type, public :: cx_t_consec
  integer :: dg
- real (kind=dp) :: ax,kx,lx, r0x,bx,cx
+ real (kind=dp) :: ax, kx, lx, r0x, bx, cx
 end type
 
 ! r0x = (a * alpha + b) * r + c * alpha + d
@@ -63,7 +63,7 @@ do j = 1, size(r,2)-1
     enddo
 enddo
 
-if (d2.eq.0) then
+if (dabs(d2).lt.1e-8) then
     stop 'cx_cut: zero distance'
 endif
 
@@ -99,8 +99,8 @@ do j = 1, size(r,2)-1
     enddo
 enddo
 
-if (d2.eq.0) then
- stop 'cx_cut_consec: zero distance'
+if (dabs(d2).lt.1d-8) then
+    stop 'cx_cut_consec: zero distance'
 endif
 
 d = sqrt(d2/(size(r,2)*(size(r,2)-1)))
@@ -149,7 +149,7 @@ endif
 do j = 0, size(r,2)-1
     do i = 0, size(r,1)-1
         if (i.ne.j) then
-            if (pc%bx.eq.0.0_dp) then
+            if (dabs(pc%bx).lt.1e-8) then
                 y(i,j) = r(i,j)
             else if (pc%bx.gt.0) then
             !  exponential transformation
@@ -217,9 +217,9 @@ enddo
 ! end if
 
 if(whichlin.eq.0) then
-    r0x= (cp(0)%a * alpha + cp(0)%b) * min(b,c) + (cp(0)%c * alpha + cp(0)%d)
-else if(whichlin.eq.180) then
     r0x= (cp(1)%a * alpha + cp(1)%b) * min(b,c) + (cp(1)%c * alpha + cp(1)%d)
+else if(whichlin.eq.180) then
+    r0x= (cp(2)%a * alpha + cp(2)%b) * min(b,c) + (cp(2)%c * alpha + cp(2)%d)
 else
     stop 'Illegal whichlin in cx_var_consec'
 end if
@@ -258,8 +258,8 @@ logical :: b
 b = pc0%dg.eq.pc1%dg.and. &
     pc0%kx.eq.pc1%kx.and. &
     pc0%lx.eq.pc1%lx.and. &
-    pc0%ax.eq.pc1%ax.and. &
-    pc0%bx.eq.pc1%bx
+    comp_real(pc0%ax, pc1%ax).and. &
+    comp_real(pc0%bx, pc1%bx)
 
 return
 END FUNCTION cx_equals
@@ -270,15 +270,29 @@ logical :: b
 !-----------------------------------------------------------------------
 
 b = pc0%dg.eq.pc1%dg.and. &
-    pc0%ax.eq.pc1%ax.and. &
-    pc0%kx.eq.pc1%kx.and. &
-    pc0%lx.eq.pc1%lx.and. &
-    pc0%bx.eq.pc1%bx.and. &
-    pc0%cx.eq.pc1%cx.and. &
-    pc0%r0x.eq.pc1%r0x
+    comp_real(pc0%ax, pc1%ax).and. &
+    comp_real(pc0%kx, pc1%kx).and. &
+    comp_real(pc0%lx, pc1%lx).and. &
+    comp_real(pc0%bx, pc1%bx).and. &
+    comp_real(pc0%cx, pc1%cx).and. &
+    comp_real(pc0%r0x, pc1%r0x)
 
 return
 END FUNCTION cx_equals_consec
+
+pure function comp_real(r1, r2) result (similar)
+real (kind=dp), intent(in) :: r1, r2
+logical :: similar
+real (kind=dp), parameter :: prec = 1d-8
+
+if (dabs(r1-r2).le.prec) then
+    similar = .true.
+else
+    similar = .false.
+endif
+
+return
+end function comp_real
 
 PURE FUNCTION cx_sort(ix) RESULT (iord)
 ! Stable descending sort, O(n^2) method, for small arrays.

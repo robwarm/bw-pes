@@ -91,7 +91,6 @@ integer, intent (in) :: mxd
 real (kind=dp), intent (in) :: r(0:,0:)
 real (kind=dp), intent (out) :: w(0:mg2_nb(mxd)-1)
 !-----------------------------------------------------------------------
-integer :: k, l0, m0, l, n, ind
 real (kind=dp) :: u(0:nr-1), v(0:mg2_nsc(mxd)-1), w0(0:mg2_npb(mxd)-1)
 
 if (size(r,1).ne.nk.or.size(r,2).ne.nk) then

@@ -43,8 +43,8 @@ if (0.le.pc%dg) then
     do j0 = sum(nki(0:ik(1)-1)), sum(nki(0:ik(1)))-1
         do i0 = sum(nki(0:ik(0)-1)), sum(nki(0:ik(0)))-1
             r0 = r((/i0,j0/),(/i0,j0/))
-            t0 = cx_cut(pc,r0)
-            if (t0.ne.0) then
+            t0 = cx_cut(pc, r0)
+            if (dabs(t0).gt.1d-12) then
                 call cx_var(pc, r0, y0)
                 call mg11_base(pc%dg, y0, w0)
                 w1 = w1 + w0 * t0

@@ -4,7 +4,6 @@ BLD = xiar -rcv
 #MKLPATH = /opt/intel/mkl/lib/intel64/
 #LIBDIRS = -L. -L/usr/lib64 -L$(MKLPATH)
 #LIBS = 
-# BLD = /usr/bin/ar -rcv
 
 objlibinv = inv_dp.o inv_any.o inv_sym2.o inv_sym2t1.o inv_sym.o inv_cg2.o inv_cg.o \
 inv_core.o inv_mgx.o inv_mg1.o inv_mg11.o inv_mg2.o inv_mg21.o inv_mg.o \

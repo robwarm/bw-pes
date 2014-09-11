@@ -48,7 +48,7 @@ interface
 end interface
 integer, intent (in), optional :: iord(0:nk-1)
 !----------------------------------------------------------------------
-integer :: iun, n, ip, i, k, iord2(0:pes2_nd*nk-1)
+integer :: iun, n, ip, i, k
 real (kind=dp) :: t0, xn0(0:pes2_nd-1,0:nk-1), xn1(0:pes2_nd-1,0:nk-1), &
   gf0(0:pes2_nd-1,0:nk-1), g2f0(0:pes2_nd*nk-1,0:pes2_nd*nk-1)
 character (len=80) :: cht0
@@ -529,10 +529,8 @@ SUBROUTINE pes2_errvf(nk, lev)
 ! Print an error report
 integer, intent (in) :: nk, lev
 !-----------------------------------------------------------------------
-integer :: n, n1, n2, n5, ip, k
-real (kind=dp) :: wt, t0, t1d, t2d, t5d, &
-  err, err1, err2, err5, errd1, errd2, errd5
-real (kind=dp) :: gf0(0:pes2_nd-1,0:nk-1)
+integer :: n, n1, n2, n5, ip
+real (kind=dp) :: wt, t0, t1d, t2d, t5d, errd1, errd2, errd5
 
 t1d = 0 ; t2d = 0 ; t5d = 0
 n1 = 0 ; n2 = 0 ; n5 = 0
@@ -585,7 +583,7 @@ endif
 return
 END SUBROUTINE pes2_errvf
 
-SUBROUTINE pes2_errf_mod (nk, lev)
+SUBROUTINE pes2_errf_mod(nk, lev)
 ! Print an error report
 integer, intent (in) :: nk, lev
 !-----------------------------------------------------------------------

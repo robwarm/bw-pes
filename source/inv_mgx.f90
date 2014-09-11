@@ -42,7 +42,7 @@ integer, parameter :: &
    0,  1,  6, 16, 27, 37, 44, 49, 52, 54, 55, 56, 56, &
    0,  1,  7, 19, 34, 47, 58, 65, 70, 73, 75, 76, 77/), &
    (/nmax+1,nmax+1/))
-integer :: nk, nl, ib, i, j
+integer :: nk, nl, ib, i
 
 ! Note, pt is the partition function, there "for the record".
 ! ps are partial sums of the partition function.
@@ -238,7 +238,7 @@ enddo
 call mgx_mk2d(nkj, x, d)
 call mgx_mk1d(nkj, d(iord0,iord0), x)
 do i = 0, nk*(nk-1)/2-1
-    iord(i) = x(i)
+    iord(i) = idint(x(i))
 enddo
 
 return

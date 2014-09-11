@@ -86,7 +86,7 @@ if (allocated(pes_x1y1_cf).and.pes_x1y1_pc.eq.pc) then
 else
 ! Require that pes_x1y1_cf is null
     if (allocated(pes_x1y1_cf)) then
-        if (any(pes_x1y1_cf.ne.0.0_dp)) then
+        if (any(dabs(pes_x1y1_cf).ge.1d-12)) then
             stop 'pes_x1y1_add: mismatch'
         endif
         deallocate (pes_x1y1_cf)

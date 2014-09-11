@@ -19,7 +19,6 @@ integer, intent (in) :: nkj(0:), dg
 integer :: nb
 !-----------------------------------------------------------------------
 ! Note: All error conditions are indicated by returning nb = -huge(0)
-integer :: id
 
 if (dg.lt.0) then
     nb = 0
