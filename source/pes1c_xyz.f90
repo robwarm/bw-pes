@@ -70,13 +70,13 @@ call pes_getiun (iun)
 l0 = len_trim(pes_dir)
 l1 = len_trim(sys)
 
+write (*,*) ' reading consec_pos.dat'
+call pes_x2y1consec_read_cp(iun, pes_dir(1:l0)//'consec_pos.dat')
 if (cx_substr(sys(1:l1),'x2y1')) then
-    ! write (*,*) ' reading consec_pos.dat'
-    call pes_x2y1consec_read_cp (iun, pes_dir(1:l0)//'consec_pos.dat')
     write (*,*) ' reading pcf-x2y1consec0.dat'
-    call pes_x2y1consec_read (iun, pes_dir(1:l0)//'pcf-x2y1consec0.dat',0)
+    call pes_x2y1consec_read(iun, pes_dir(1:l0)//'pcf-x2y1consec0.dat',0)
     write (*,*) ' reading pcf-x2y1consec180.dat'
-    call pes_x2y1consec_read (iun, pes_dir(1:l0)//'pcf-x2y1consec180.dat',180)
+    call pes_x2y1consec_read(iun, pes_dir(1:l0)//'pcf-x2y1consec180.dat',180)
 else
     pes_x2y1consec_pc0 = cx_null_consec ; allocate (pes_x2y1consec_cf0(0:-1))
     pes_x2y1consec_pc180 = cx_null_consec ; allocate (pes_x2y1consec_cf180(0:-1))

@@ -23,17 +23,19 @@ FORCE :
 
 # Pattern rule to make a %.o file from a %.f90 file.
 %.o : %.f90
-        $(FC) -c $(FFLAGS) -I../ $<
+	$(FC) -c $(FFLAGS) -I../ $<
 
 # Here are the rules to make the libraries.
 libpx.a : $(objlibpx) ../libpes.a
-        \rm -f $@
-        cp ../libpes.a $(@F)
-        $(BLD) $(@F) $(objlibpx)
+	\rm -f $@
+	cp ../libpes.a $(@F)
+	$(BLD) $(@F) $(objlibpx)
+	\cp *.mod ../..//include/
+	\cp *.a ../../lib64/
 
 # targets 'clean' and 'realclean' clean up the directory.
 clean : FORCE
-        rm -f *.o *~ core junk
+	rm -f *.o *~ core junk
 realclean : clean
-        rm -f *.a *.mod
+	rm -f *.a *.mod
 # DO NOT DELETE

@@ -30,6 +30,8 @@ libpx.a : $(objlibpx) ../libpes.a
 	\rm -f $@
 	cp ../libpes.a $(@F)
 	$(BLD) $(@F) $(objlibpx)
+	\cp *.mod ../../include/
+	\cp *.a ../../lib64/
 
 # targets 'clean' and 'realclean' clean up the directory.
 clean : FORCE

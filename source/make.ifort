@@ -42,10 +42,11 @@ FORCE :
 # Here are the rules to make the libraries.
 libpes.a : $(objlibinv) $(objlibpes)
 	\rm -f $@
+	\mkdir -p ../include
+	\mkdir -p ../lib64
 	$(BLD) $(@F) $(objlibinv) $(objlibpes)
-#libpx.a : $(objlibpx)
-#	\rm -f $@
-#	$(BLD) $(@F) $(objlibpx)
+	\cp *.mod ../include/
+	\cp *.a ../lib64/
 
 # targets 'clean' and 'realclean' clean up the directory.
 clean : FORCE

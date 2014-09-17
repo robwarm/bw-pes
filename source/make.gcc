@@ -42,13 +42,14 @@ FORCE :
 libpes.a : $(objlibinv) $(objlibpes)
 	\rm -f $@
 	$(BLD) $(@F) $(objlibinv) $(objlibpes)
-#libpx.a : $(objlibpx)
-#	\rm -f $@
-#	$(BLD) $(@F) $(objlibpx)
+	\mkdir -p ../include
+	\mkdir -p ../lib64
+	\cp *.mod ../include/
+	\cp *.a ../lib64/
 
 # targets 'clean' and 'realclean' clean up the directory.
 clean : FORCE
 	rm -f *.o *~ core junk
 realclean : clean
-	rm -f *.a *.mod
+	rm -f *.a *.mod ../include/*.mod ../lib64/*.a
 # DO NOT DELETE
